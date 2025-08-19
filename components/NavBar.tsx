@@ -7,12 +7,10 @@ import dynamic from "next/dynamic";
 const MobileDrawer = dynamic(() => import("./MobileDrawer"), { ssr: false });
 
 export default function NavBar() {
-  // const isMobile = useMediaQuery("(max-width: 40rem)");
-
   return (
     <>
       <nav className="top-0 z-50  w-full py-4 px-6 flex items-center justify-between border-b-2">
-        <div className="flex items-center gap-2">
+        <Link href={"/"} className="flex items-center gap-2">
           <svg
             width="0"
             height="0"
@@ -34,7 +32,7 @@ export default function NavBar() {
             />
           </svg>
           <h1 className="text-2xl font-medium">{navbarData.title}</h1>
-        </div>
+        </Link>
         <div className="flex items-center gap-4">
           <ul className="max-sm:hidden flex gap-6">
             {navbarData.navLinks.map((link) => {

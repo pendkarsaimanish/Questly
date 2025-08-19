@@ -1,11 +1,13 @@
 "use client";
 
+import { ConfettiButton } from "@/components/magicui/confetti";
 import { Meteors } from "@/components/magicui/meteors";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { Plus, Trash } from "lucide-react";
+import confetti from "canvas-confetti";
+import { CheckCheck, Plus, Trash } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
@@ -134,10 +136,15 @@ export default function Home() {
           value.tasks.map((todo) => (
             <Card className="w-full p-3" key={todo.id}>
               <CardContent className="flex gap-2 items-center">
-                <Checkbox
-                  checked={todo.completed}
-                  onCheckedChange={() => toggleTodo(todo.id)}
-                />
+                <Button
+                  onClick={() => {
+                    toggleTodo(todo.id);
+                    confetti();
+                  }}
+                  className="w-12"
+                >
+                  <CheckCheck color="green" />
+                </Button>
                 <p className={todo.completed ? "line-through opacity-50" : ""}>
                   {todo.text}
                 </p>
