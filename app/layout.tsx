@@ -1,13 +1,9 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import { Sansation, Edu_NSW_ACT_Cursive } from "next/font/google";
+import { Edu_NSW_ACT_Cursive } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
-
-const sansation = Sansation({
-  weight: ["300", "400", "700"],
-  variable: "--font-sansation",
-  subsets: ["latin"],
-});
+import NavBar from "@/components/NavBar";
+import { Toaster } from "sonner";
 
 const edu_nsw_act_cursive = Edu_NSW_ACT_Cursive({
   variable: "--font-edu-nsw-act-cursive",
@@ -33,7 +29,14 @@ export default function RootLayout({
     >
       <body className={`antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NavBar />
           {children}
+          <Toaster
+            position="bottom-right"
+            duration={4000}
+            closeButton
+            richColors
+          />
         </ThemeProvider>
       </body>
     </html>

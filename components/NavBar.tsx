@@ -1,31 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from "./ui/sidebar";
-import { History, Home, Info, Menu } from "lucide-react";
+import { Home, Menu, X } from "lucide-react";
 import ThemeToggleButton from "./ui/theme-toggle-button";
+import { navbarData } from "@/data/navbar";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { useMediaQuery } from "usehooks-ts";
+import dynamic from "next/dynamic";
+const MobileDrawer = dynamic(() => import("./MobileDrawer"), { ssr: false });
 
 export default function NavBar() {
-  const {
-    state,
-    open,
-    setOpen,
-    openMobile,
-    setOpenMobile,
-    isMobile,
-    toggleSidebar,
-  } = useSidebar();
+  // const isMobile = useMediaQuery("(max-width: 40rem)");
 
   return (
     <>
-      <div className="fixed w-full py-4 px-6 flex items-center justify-between">
+      <nav className="top-0 z-50  w-full py-4 px-6 flex items-center justify-between border-b-2">
         <div className="flex items-center gap-2">
           <svg
             width="0"
@@ -47,48 +45,28 @@ export default function NavBar() {
               d="m80 96 16 16 32-32"
             />
           </svg>
-          <h1 className="text-2xl font-medium">Questly</h1>
+          <h1 className="text-2xl font-medium">{navbarData.title}</h1>
         </div>
         <div className="flex items-center gap-4">
           <ul className="max-sm:hidden flex gap-6">
-            <Link href={"/"} className="flex gap-1 items-center">
-              <Home />
-              <p className="font-medium">Home</p>
-            </Link>
-            <Link href={"/"} className="items-center flex gap-1">
-              <History /> <p className="font-medium">History</p>
-            </Link>
-            <Link href={"/"} className="flex items-center gap-1">
-              <Info size={18} />
-              <p className="font-medium">Developer</p>
-            </Link>
+            {navbarData.navLinks.map((link) => {
+              const Icon = link.logo;
+              return (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className="flex gap-1 items-center"
+                >
+                  <Icon />
+                  <p className="font-medium">{link.title}</p>
+                </Link>
+              );
+            })}
           </ul>
           <ThemeToggleButton start="top-right" />
-          <Menu
-            onClick={() => {
-              setOpenMobile(!openMobile);
-            }}
-            className="sm:hidden"
-          />
+          <MobileDrawer data={navbarData} />
         </div>
-      </div>
-      <div className="md:hidden">
-        <Sidebar side="right" variant="sidebar">
-          <SidebarContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton>Home</SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton>History</SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton>About Developer</SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarContent>
-        </Sidebar>
-      </div>
+      </nav>
     </>
   );
 }
