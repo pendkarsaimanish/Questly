@@ -1,20 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Home, Menu, X } from "lucide-react";
 import ThemeToggleButton from "./ui/theme-toggle-button";
 import { navbarData } from "@/data/navbar";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { useMediaQuery } from "usehooks-ts";
 import dynamic from "next/dynamic";
 const MobileDrawer = dynamic(() => import("./MobileDrawer"), { ssr: false });
 

@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import { Montez, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";

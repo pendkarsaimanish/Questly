@@ -3,14 +3,12 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { LucideHome, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navbarData } from "@/types";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 interface props {
