@@ -1,13 +1,14 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import { Edu_NSW_ACT_Cursive } from "next/font/google";
+import { Montez, Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "sonner";
 
-const edu_nsw_act_cursive = Edu_NSW_ACT_Cursive({
+const poppins = Poppins({
   variable: "--font-edu-nsw-act-cursive",
   subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -22,11 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${edu_nsw_act_cursive.className}`}
-    >
+    <html lang="en" suppressHydrationWarning className={`${poppins.className}`}>
       <body className={`antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NavBar />
