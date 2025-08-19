@@ -1,14 +1,14 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import { Poppins } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "sonner";
 
-const poppins = Poppins({
+const poppins = Ubuntu({
   variable: "--font-edu-nsw-act-cursive",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export const metadata: Metadata = {
